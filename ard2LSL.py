@@ -21,6 +21,7 @@ import re
 deviceSerialInterface = None;
 
 # Need to check device VID/PID (for microcontroller USB interface)
+# Look it up or check the number yourself in Device Manager (Windows) or terminal (Mac/Linux)
 deviceName = "uno"; # Default Device Name
 deviceMap = {"uno":"2341:0043","leo":"2341:8036","teensy4.0":"16C0:0483"}
 
@@ -243,7 +244,7 @@ if(len(sys.argv)>1):
 serialConnected = True;
 while True:
     try:
-        if(not use_random):
+        if(not use_random): # Reads twice and averages to verify value or reduce noise
             # Make a new random 1-channel sample; this is converted into a
             # pylsl.vector of floats (the data type that is expected by push_sample)
             # Note: readline() waits until the Arduino submits a message and will not proceed until it receives a message. 
